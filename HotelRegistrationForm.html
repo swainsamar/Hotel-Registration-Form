@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HOTEL REGISTRATION FORM</title>
+    <style>
+        tr{
+            background-color:deeppink;
+            color:white;
+            text-align:center;
+        }
+        dt{
+            background-color:deepskyblue;
+            color:white;
+            font-weight:bold;
+        }
+    </style>
+    <script>
+        function regClick(){
+            var x=document.getElementById("txtName").value;
+            var y=document.getElementById("txtNumber").value;
+            var message="";
+
+            if(x == "")
+            {
+                //alert();
+                message ="Please Enter Customer name";
+
+                //return false;
+
+            }
+            if(y == "")
+            {
+                message +="\n"+"Please Advance Amount";
+                //alert(");
+                //return false;
+
+            }
+            if(message !="")
+            {
+                alert(message);
+                return false;
+            }
+            else
+            {
+                document.getElementById("Summary").style.display="block";
+                document.getElementById("tblRegister").style.display="none";
+                var txtName=document.getElementById("txtName").value;
+                var deluxeRoom=document.getElementById("deluxeRoom");
+                var suiteRoom=document.getElementById("suiteRoom");
+                var lockerRoom=document.getElementById("lockerRoom");
+                var acRoom=document.getElementById("acRoom");
+                var totRcost,eCost,rName,eName="";
+                if(deluxeRoom.checked) {
+                    totRcost = 2500;
+                    rName = deluxeRoom.value;
+                }
+                if(suiteRoom.checked) {
+                    totRcost = 4000;
+                    rName = suiteRoom.value;
+                }
+                if(lockerRoom.checked) {
+                    eCost = 400;
+                    totRcost = totRcost + eCost;
+                    eName += lockerRoom.value + "<br>";
+                }
+                if(acRoom.checked){
+                    eCost=500;
+                    totRcost=totRcost+eCost;
+                    eName+=acRoom.value+"<br>";
+                }
+                var days=document.getElementById("txtDays").value;
+                if(y!=""){
+                    totRcost=(totRcost*days)-y;
+                }
+                var date1 = document.getElementById("txtDate").value;
+
+                var person=document.getElementById("txtPerson").value;
+
+
+                var advamt=document.getElementById("txtNumber").value;
+                document.getElementById("lblName").innerHTML=txtName;
+                document.getElementById("lblDate").innerText=date1;
+                document.getElementById("lblPerson").innerText=person;
+                document.getElementById("lblDays").innerText=days;
+                document.getElementById("lblRoom").innerHTML=rName;
+                document.getElementById("lblEminuties").innerHTML=eName;
+                document.getElementById("lblAdvAmt").innerHTML=advamt;
+                document.getElementById("lblTotal").innerHTML="&#x20B9;"+totRcost;
+
+
+                return true;
+            }
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <font size="5">
+        <table width="1000" border="2" cellspacing="4" cellpadding="4"
+               align="center" id="tblRegister">
+            <tr>
+                <td colspan="2">
+                    <img src="IMAGES/ht.jpg" height="300" width="1000">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Hotel Registration Form</td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <th style="margin-left:-50px">Customer Name<span style="color: #dd1144">*</span></th>
+                        </tr>
+                        <tr>
+                            <th>Check in Date <span style="color: #dd1144">*</span></th>
+                        </tr>
+                        <tr>
+                            <th>Total Number Person <span style="color: #dd1144">*</span></th>
+                        </tr>
+                        <tr>
+                            <th>Total Number of Days <span style="color: #dd1144">*</span></th>
+                        </tr>
+                    </table>
+                </td>
+
+                <td>
+                    <table>
+                        <tr>
+                            <td><input type="text" id="txtName"></td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="date" id="txtDate"></td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="number" id="txtPerson"></td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="number" id="txtDays"></td>
+
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">Select Your Room</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="IMAGES/d.jpg" height="100" width="100"><br>
+                    <input type="radio" id="deluxeRoom" value="Deluxe Room"
+                           Name="roomType">Deluxe Room(&#x20B9;2500/-)
+                </td>
+                <td>
+                    <img src="IMAGES/s.jpg" height="100" width="100"><br>
+                    <input type="radio" id="suiteRoom" value="Suite Room"
+                           Name="roomType">Room Type(&#x20B9;4000/-)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Select Eminuties
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="IMAGES/l.jpg" height="100" width="100"><br>
+                    <input type="checkbox" id="lockerRoom" value="Locker Room"
+                           Name="Locker Room">Locker Room(&#x20B9;400/-)
+                </td>
+                <td>
+                    <img src="IMAGES/a.jpg" height="100" width="100"><br>
+                    <input type="checkbox" id="acRoom" value="A/C Room"
+                           Name="Room Type">A/C Room(&#x20B9;500/-)
+                </td>
+            </tr>
+            <tr>
+                <td>Advance Amount <span style="color: #dd1144">*</span></td>
+                <td>
+                    <input type="text" id="txtNumber">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="Click Here to Register" onclick="return regClick()">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <fieldset id="Summary" style="display:none">
+            <legend>Register Summary</legend>
+            <dl>
+                <dt>Customer Name</dt>
+                <dd id="lblName"></dd>
+                <dt>Check In Date</dt>
+                <dd id="lblDate"></dd>
+                <dt>total number of Person</dt>
+                <dd id="lblPerson"></dd>
+                <dt>Total Number of Days</dt>
+                <dd id="lblDays"></dd>
+                <dt>Select Room</dt>
+                <dd id="lblRoom"></dd>
+                <dt>Select Eminuties</dt>
+                <dd id="lblEminuties"></dd>
+                <dt>Advance Amount</dt>
+                <dd id="lblAdvAmt"></dd>
+                <dt>Total Amount</dt>
+                <dd id="lblTotal"></dd>
+            </dl>
+            <div align="center">
+                <a href="HotelRegistrationForm.html">Back to Home</a>
+            </div>
+        </fieldset>
+    </font>
+</div>
+</body>
+</html>
